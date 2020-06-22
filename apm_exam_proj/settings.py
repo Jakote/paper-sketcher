@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
 CRISPY_TEMPLATE_PACK="bootstrap4"
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
