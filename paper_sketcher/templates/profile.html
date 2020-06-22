@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+  <h5 class="mt-4">Edit Profile</h5><hr>
+    <div class="container my-4">
+       <form  method="POST" enctype="multipart/form-data">
+        
+         {% csrf_token %}
+         {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Continue</button>
+       </form>
+        {% comment %} <form  method="POST" action="#" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="row">
+            <div class="col-6">
+              <h6>Username</h6>
+              <input type="text" name="meterID" class="form-control" placeholder="Username" required="required"><br>
+              <h6>Email</h6>
+              <input type="text" name="meterID" class="form-control" placeholder="Meter ID" required="required"><br>
+            
+              <h6>Level of Knowledge</h6>
+                <select required name="user" class="form-control">
+                  <option >Doctoral</option>
+                  <option>Masters</option>
+                  <option>Honors</option>
+                </select><br>
+            
+              <h6>Domain of Knowledge</h6>
+                <select required name="user" class="form-control form-control-sm">
+                  <option >Computer Science</option>
+                  <option>Information Systems</option>
+                </select><br>
+              
+               <h6>Paper to Sketch</h6>
+                <select required name="user" class="form-control form-control-sm">
+                  <option>Proposal Paper</option>
+                  <option>Research Paper</option>
+                  <option>Thesis Paper</option>
+                </select><br>
+              </div>
+
+            </div>
+
+        
+            <div class ="row">
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Continue </button>
+                    </div>
+                </div>
+                
+            </div>
+        </form> {% endcomment %}
+
+      </div>
+  </div>
+
+{% endblock %}

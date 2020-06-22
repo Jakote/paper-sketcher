@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>RPS| </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/mainapp.css' %}" rel="stylesheet">
+
+  <!-- map style -->
+  {% block mapstyle %}
+  {% endblock %}
+
+
+</head>
+
+<body>
+  {% if request.session.username != Empty %}
+    <div class="d-flex" id="wrapper">
+     
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+
+        <div class="sidebar-heading">
+          <font size="-1"><strong>Research Paper Sketcher</strong></font>
+          </div>
+        <div class="list-group list-group-flush">
+          <a href="{% url 'home' %}" class="list-group-item list-group-item-action top-nav-link bg-success ">Home</a> 
+          <a href="{% url 'sketch' %}" class="list-group-item list-group-item-action top-nav-link bg-success ">Save Paper Contents</a>
+          <a href="{% url 'pdf_templates' %}" class="list-group-item list-group-item-action top-nav-link bg-success ">Generate Paper</a>
+          {% comment %} <a href="#" class="list-group-item list-group-item-action top-nav-link bg-success ">Records</a>
+          <a href="#" class="list-group-item list-group-item-action top-nav-link bg-success ">Investigations</a>
+          {% if perms.add_logentry %}
+            <a href="#" class="list-group-item list-group-item-action top-nav-link bg-success">Reports</a>
+            <a href="#" class="list-group-item list-group-item-action top-nav-link bg-success ">System settings</a>
+          {% endif %} {% endcomment %}
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-expand-lg navbar-custom border-bottom">
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- top nav -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link top-nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Signed in as {{ request.session.username }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'index' %}">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+
+      {% block content %}
+      {% endblock %}
+
+      </div>
+      <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    
+    {% block mapscripts %}
+    {% endblock %}
+  {% else %}
+    <h2>Your logging in session has expired. Please follow<a class="stretched-link" href="{% url 'login' %}"> the log in link </a> to activate it before using the system</h2>
+  {% endif %}
+</body>
+
+</html>

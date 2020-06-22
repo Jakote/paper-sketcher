@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSP | Log in</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="login-form">
+    <form action="login" method="POST">
+        {% csrf_token %}
+        <div class="imgcontainer">
+            <img src="{% static 'img/download.png' %}" alt="Avatar" class="avatar">
+        </div>
+        <h3 class = "text-center">Research Paper Sketcher</h3>
+        <h2 class="text-center">Log In</h2>       
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger btn-block">Log in</button>
+        </div>
+        <p class="text-center"><a href="{% url 'signup' %}"> New user? Click here to sign up </a></p> 
+        {% for message in messages %}
+            <h3> {{message}} </h3>
+        {% endfor %}   
+    </form>
+</div>
+
+</body>
+</html>  
