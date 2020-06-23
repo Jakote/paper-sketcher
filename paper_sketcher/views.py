@@ -162,67 +162,17 @@ def pdf_templates(request):
             with open('mytexfile.tex','r') as myfile:
                 text = myfile.read()
                 text_new = text.replace('username', content.author)
-                # text_new1 = text.replace('Your text here2.', content.title)
-                # text_new2 = text.replace('Your text here3.', content.introduction)
-                # text_new3 = text.replace('Your text here4.', content.methodology)
-                # text_new4 = text.replace('Your text here5.', content.conclusion)
-                # text_new5 = text.replace('Your text here6.', content.references)
-                #text_new = text.replace('English abstract here.', content.abstract)
-
+                
                 with open('mytexfile.tex','w') as output:
                     output.write(text_new)
-                    # output.write(text_new1)
-                    # output.write(text_new2)
-                    # output.write(text_new3)
-                    # output.write(text_new4)
-                    # output.write(text_new5)
-    
-               
-    #     with open('acknowledgements.tex','r') as myfile:
-    #         text1 = myfile.read()
-    #         text_new = text1.replace('Your text here', content.acknowledgement)
 
-    #         with open('acknowledgements.tex','w') as output:
-    #             output.write(text_new)
-
-    #     with open('background.tex','r') as myfile:
-    #         text2 = myfile.read()
-    #         text_new= text2.replace('Your text here', content.background)
-
-    #         with open('background.tex','w') as output:
-    #             output.write(text_new2)
-        
-    #     # with open('conclusion.tex','r') as myfile:
-    #     #     text3 = myfile.read()
-    #     #     text_new = text3.replace('Your text here', content.conclusion)
-
-    #     #     with open('conclusion.tex','w') as output:
-    #     #         output.write(text_new)
-        
-    #     with open('cover.tex','r') as myfile:
-    #         text4 = myfile.read()
-    #         text_new = text4.replace('Your text here', content.author)
-
-    #         with open('cover.tex','w') as output:
-    #             output.write(text_new)
-
-    #     # with open('introduction.tex','r') as myfile:
-    #     #     text5 = myfile.read()
-    #     #     text_new5 = text5.replace('Your text here.', content.introduction)
-
-    #     #     with open('introduction.tex','w') as output:
-    #     #         output.write(text_new5)
-    
         x = subprocess.call('pdflatex mytexfile.tex', shell=True)
-        #os.system('start mytexfile.pdf')
+        
         try:
             return FileResponse(open('mytexfile.pdf', 'rb'), content_type='application/pdf')
         except FileNotFoundError:
             raise Http404()
-        # if x !=0:
-        #     print('Exit-code not 0, check result!')
-        # else: 
-        #     os.system('start mytexfile.pdf')
+       
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="mytexfile.pdf"'
         return response
