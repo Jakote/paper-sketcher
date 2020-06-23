@@ -214,14 +214,20 @@ def pdf_templates(request):
     #     #         output.write(text_new5)
     
         x = subprocess.call('pdflatex mytexfile.tex', shell=True)
-        os.system('start mytexfile.pdf')
-        if x !=0:
-            print('Exit-code not 0, check result!')
-        else: 
-            os.system('start mytexfile.pdf')
+        #os.system('start mytexfile.pdf')
+        try:
+            return FileResponse(open('mytexfile.pdf', 'rb'), content_type='application/pdf')
+        except FileNotFoundError:
+            raise Http404()
+        # if x !=0:
+        #     print('Exit-code not 0, check result!')
+        # else: 
+        #     os.system('start mytexfile.pdf')
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="mytexfile.pdf"'
+        return response
         return FileResponse(as_attachment=True, filename='mytexfile.pdf')
-    
-    return HttpResponse('Go back to Save Paper Content before sketching paper')
+    return HttpResponse('<h2>Go back to \'Save Paper Content\' before sketching paper<\h2>')
     
   
 def generate_paper(request):
