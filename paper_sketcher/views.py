@@ -139,7 +139,7 @@ def profile(request):
 
 def pdf_templates(request): 
     user = get_object_or_404(User, username=request.user.username)
-    getPaper=""
+    getPaper=None
     
     if CS_Research_Paper.objects.filter(author=user).exists():
         getPaper = CS_Research_Paper.objects.filter(author=user)
@@ -155,7 +155,7 @@ def pdf_templates(request):
         getPaper = IS_Research_Paper.objects.filter(author=user) 
 
 
-    if getPaper:     
+    if getPaper is not None:     
         for content in getPaper:
             print(content)
             print(getPaper)
