@@ -25,7 +25,7 @@ SECRET_KEY = 'yr2=yjoa(!ow6ykr36ebv$k$_f!k@447(j+g1)nx278+815jx)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['paper-sketcher.azurewebsites.net']
 
 
 # Application definition
