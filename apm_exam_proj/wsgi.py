@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
-
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
+if os.environ.get('DJANGO_ENV') == 'production':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.production')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
 application = get_wsgi_application()

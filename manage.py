@@ -5,7 +5,11 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
+    #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
+    if os.environ.get('DJANGO_ENV') == 'production':
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.production')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apm_exam_proj.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
