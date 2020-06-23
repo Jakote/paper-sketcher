@@ -25,7 +25,7 @@ SECRET_KEY = 'yr2=yjoa(!ow6ykr36ebv$k$_f!k@447(j+g1)nx278+815jx)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['paper-sketcher.azurewebsites.net']
+ALLOWED_HOSTS = ['paper-sketcher.azurewebsites.net', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'apm_exam_proj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "papersketcherdb",
+        'USER': "postgres@jakopostgresql",
+        'PASSWORD': "toom9Toom99",
+        'HOST': "jakopostgresql.postgres.database.azure.com",
+        'PORT': '',
     }
 }
 
