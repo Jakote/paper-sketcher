@@ -5,7 +5,7 @@ astroid==2.3.3
 attrs==18.2.0
 beautifulsoup4==4.9.1
 bibtexparser==1.2.0
-certifi==2020.4.5.1
+certifi==2022.12.7
 chardet==3.0.4
 colorama==0.4.3
 cycler==0.10.0
